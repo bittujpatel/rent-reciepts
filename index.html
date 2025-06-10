@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Intimation Receipt Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1>Rent Intimation Receipt Generator</h1>
+            <p class="subtitle">Generate professional rental intimation receipts</p>
+        </header>
+
+        <div class="main-layout">
+            <!-- Form Section -->
+            <div class="form-section">
+                <div class="card">
+                    <div class="card__body">
+                        <!-- Room Selection -->
+                        <div class="form-section-header">
+                            <h3>Room Details</h3>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="building">Building</label>
+                                <select id="building" class="form-control">
+                                    <option value="">Select Building</option>
+                                    <option value="A">Building A</option>
+                                    <option value="B">Building B</option>
+                                    <option value="C">Building C</option>
+                                    <option value="D">Building D</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="room">Room Number</label>
+                                <select id="room" class="form-control">
+                                    <option value="">Select Room</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="room-display" id="roomDisplay">
+                            <span class="room-code">Select Building & Room</span>
+                        </div>
+
+                        <!-- Month Selection -->
+                        <div class="form-section-header">
+                            <h3>Rent Period</h3>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="month">Rent for Month</label>
+                            <select id="month" class="form-control">
+                                <option value="">Select Month</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June" selected>June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
+                        </div>
+
+                        <!-- Water Meter Configuration -->
+                        <div class="form-section-header">
+                            <h3>Water Meter Configuration</h3>
+                            <p class="section-subtitle">Configure up to 2 water meters</p>
+                        </div>
+
+                        <div id="metersContainer">
+                            <!-- Meter 1 -->
+                            <div class="meter-config" data-meter="1">
+                                <div class="meter-header">
+                                    <h4>Meter 1</h4>
+                                    <button type="button" class="btn btn--sm btn--outline toggle-meter" data-meter="1">
+                                        <span class="toggle-text">Enable</span>
+                                    </button>
+                                </div>
+                                <div class="meter-fields" style="display: none;">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">Meter Type</label>
+                                            <select class="form-control meter-type">
+                                                <option value="Kitchen">Kitchen</option>
+                                                <option value="Bathroom">Bathroom</option>
+                                                <option value="All">All</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Unit Type</label>
+                                            <select class="form-control unit-type">
+                                                <option value="1">Regular (×1)</option>
+                                                <option value="10">×10 Multiplier</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">Previous Reading</label>
+                                            <input type="number" class="form-control old-reading" placeholder="0" min="0">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Current Reading</label>
+                                            <input type="number" class="form-control new-reading" placeholder="0" min="0">
+                                        </div>
+                                    </div>
+                                    <div class="meter-calculation">
+                                        <div class="calculation-display">
+                                            <span class="usage-display">Usage: 0 liters</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Meter 2 -->
+                            <div class="meter-config" data-meter="2">
+                                <div class="meter-header">
+                                    <h4>Meter 2</h4>
+                                    <button type="button" class="btn btn--sm btn--outline toggle-meter" data-meter="2">
+                                        <span class="toggle-text">Enable</span>
+                                    </button>
+                                </div>
+                                <div class="meter-fields" style="display: none;">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">Meter Type</label>
+                                            <select class="form-control meter-type">
+                                                <option value="Kitchen">Kitchen</option>
+                                                <option value="Bathroom">Bathroom</option>
+                                                <option value="All">All</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Unit Type</label>
+                                            <select class="form-control unit-type">
+                                                <option value="1">Regular (×1)</option>
+                                                <option value="10">×10 Multiplier</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">Previous Reading</label>
+                                            <input type="number" class="form-control old-reading" placeholder="0" min="0">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Current Reading</label>
+                                            <input type="number" class="form-control new-reading" placeholder="0" min="0">
+                                        </div>
+                                    </div>
+                                    <div class="meter-calculation">
+                                        <div class="calculation-display">
+                                            <span class="usage-display">Usage: 0 liters</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Rent & Charges -->
+                        <div class="form-section-header">
+                            <h3>Rent & Charges</h3>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="rentAmount">Monthly Rent (₹)</label>
+                                <input type="number" id="rentAmount" class="form-control" placeholder="5000" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="waterRate">Water Rate per Liter (₹)</label>
+                                <input type="number" id="waterRate" class="form-control" value="0.20" step="0.01" min="0">
+                            </div>
+                        </div>
+
+                        <!-- Additional Charges -->
+                        <div class="form-section-header">
+                            <h3>Additional Charges</h3>
+                            <button type="button" id="addCharge" class="btn btn--sm btn--secondary">Add Charge</button>
+                        </div>
+
+                        <div id="additionalCharges">
+                            <!-- Dynamic charges will be added here -->
+                        </div>
+
+                        <!-- Generate Button -->
+                        <div class="generate-section">
+                            <button type="button" id="generateReceipt" class="btn btn--primary btn--lg btn--full-width">
+                                Generate Receipt
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Receipt Preview Section -->
+            <div class="receipt-section">
+                <div class="receipt-container">
+                    <div class="receipt-actions">
+                        <button type="button" id="printReceipt" class="btn btn--primary btn--sm">Print</button>
+                    </div>
+                    
+                    <div class="receipt" id="receipt">
+                        <div class="receipt-header">
+                            <h2>RENT INTIMATION RECEIPT</h2>
+                        </div>
+                        
+                        <div class="receipt-body">
+                            <div class="receipt-section-title">Basic Details</div>
+                            <div class="receipt-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">Room:</span>
+                                    <span class="detail-value" id="receiptRoom">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Rent for Month:</span>
+                                    <span class="detail-value" id="receiptMonth">-</span>
+                                </div>
+                            </div>
+
+                            <div class="receipt-section-title">Water Meter Calculations</div>
+                            <div id="receiptWaterMeters" class="water-meters">
+                                <div class="no-meters">No water meters configured</div>
+                            </div>
+
+                            <div class="receipt-section-title">Charges Breakdown</div>
+                            <div class="charges-breakdown" id="chargesBreakdown">
+                                <div class="charge-row">
+                                    <span class="charge-label">Monthly Rent:</span>
+                                    <span class="charge-value" id="receiptRent">₹0</span>
+                                </div>
+                                <div class="charge-row water-charge-row" style="display: none;">
+                                    <span class="charge-label">Water Charges:</span>
+                                    <span class="charge-value" id="receiptWaterCharges">₹0</span>
+                                </div>
+                                <div class="water-details" id="waterDetails" style="display: none;"></div>
+                                <div id="additionalChargesReceipt"></div>
+                                <div class="total-row">
+                                    <span class="total-label">TOTAL AMOUNT:</span>
+                                    <span class="total-value" id="receiptTotal">₹0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
